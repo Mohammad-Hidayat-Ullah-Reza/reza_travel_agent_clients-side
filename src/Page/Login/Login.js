@@ -1,10 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { FcGoogle } from "react-icons/fc";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import GoogleSignIn from "../Shared/GoogleSignIn/GoogleSignIn";
 
 const Login = () => {
+  const { passwordSignIn } = useContext(AuthContext);
+
+  const handleSignIn = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    passwordSignIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        form.reset();
+      })
+      .catch((e) => console.log(e));
+  };
   return (
-    <form className="w-1/4 text-left mx-auto mt-5 shadow-2xl p-5 border-1  rounded-xl">
+    <form
+      onSubmit={handleSignIn}
+      className="w-1/4 text-left mx-auto mt-5 shadow-2xl p-5 border-1  rounded-xl"
+    >
       <h2 className="text-3xl font-bold dark:text-white mb-6 text-center">
         Login Now !!!
       </h2>
@@ -58,13 +77,7 @@ const Login = () => {
         <span className="mx-2 font-semibold">or</span>
         <span className="w-full h-1 border-b-2 border-black"></span>
       </div>
-      <div
-        className="text-black bg-yellow-200 hover:bg-yellow-300
-       hover:cursor-pointer font-semibold rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-yellow-400 dark:hover:bg-yellow-500 flex items-center justify-center"
-      >
-        <FcGoogle className="w-5 h-5 mr-2"></FcGoogle>
-        <span>Login With Google</span>
-      </div>
+      <GoogleSignIn firstLetter={"Login"}></GoogleSignIn>
     </form>
   );
 };
