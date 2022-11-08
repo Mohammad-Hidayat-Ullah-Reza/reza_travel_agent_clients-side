@@ -1,8 +1,41 @@
+import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import ReviewCard from "./ReviewCard";
 
 const ServiceDetail = () => {
   const { _id, about, name, picture, price, rating } = useLoaderData();
+  const { user, reviewInfo, setReviewInfo } = useContext(AuthContext);
+
+  const handleAddReview = (event) => {
+    event.preventDefault();
+    if (!user) {
+      return alert("user not logged in");
+    }
+    const form = event.target;
+    const review = form.review.value;
+    const displayName = user.displayName;
+    const email = user.email;
+    const doc = {
+      displayName,
+      email,
+      review,
+    };
+
+    fetch("http://localhost:5000/review", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(doc),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        form.reset();
+      })
+      .catch((e) => console.log(e));
+  };
 
   return (
     <div className="m-5 p-5">
@@ -15,7 +48,7 @@ const ServiceDetail = () => {
       <section>
         {/* --------add review form start-------- */}
         <div>
-          <form>
+          <form onSubmit={handleAddReview}>
             <div className="mb-4 w-full bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
               <div className="py-2 px-4 bg-white rounded-t-lg dark:bg-gray-800">
                 <label for="comment" className="sr-only">
@@ -23,6 +56,7 @@ const ServiceDetail = () => {
                 </label>
                 <textarea
                   id="comment"
+                  name="review"
                   rows="4"
                   className="px-0 w-full text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
                   placeholder="Write a review..."
