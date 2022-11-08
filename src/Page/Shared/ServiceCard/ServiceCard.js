@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const ServiceCard = ({ lastThreeServiceInfo }) => {
-  const { _id, about, name, picture, price, rating } = lastThreeServiceInfo;
+const ServiceCard = ({ serviceInfo }) => {
+  const { _id, about, name, picture, price, rating } = serviceInfo;
   return (
     <div className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
       <Link to="">
