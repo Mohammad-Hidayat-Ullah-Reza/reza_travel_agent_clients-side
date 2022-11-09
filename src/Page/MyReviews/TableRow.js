@@ -1,6 +1,10 @@
 import React from "react";
 
-const TableRow = ({ myReview, handleDeleteReview }) => {
+const TableRow = ({
+  myReview,
+  handleDeleteReview,
+  notifyDeleteConfirmation,
+}) => {
   const { review, serviceName, _id } = myReview;
   return (
     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -22,7 +26,7 @@ const TableRow = ({ myReview, handleDeleteReview }) => {
           Edit
         </a>
         <button
-          onClick={() => handleDeleteReview(_id)}
+          onClick={() => notifyDeleteConfirmation(_id)}
           className="font-medium text-red-600 dark:text-red-500 hover:underline"
         >
           Remove

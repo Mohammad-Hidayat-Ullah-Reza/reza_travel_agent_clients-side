@@ -10,7 +10,7 @@ const ServiceDetail = () => {
   const { user, reviewsInfo, setReviewsInfo } = useContext(AuthContext);
 
   //  if the user not logged in, this toast will tell the user to login
-  const notify = (event) => {
+  const notifyLogin = (event) => {
     event.preventDefault();
     toast.custom((t) => (
       <div
@@ -100,7 +100,7 @@ const ServiceDetail = () => {
       <section>
         {/* --------add review form start-------- */}
         <div>
-          <form onSubmit={user?.uid ? handleAddReview : notify}>
+          <form onSubmit={user?.uid ? handleAddReview : notifyLogin}>
             <div className="mb-4 w-full bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
               <div className="py-2 px-4 bg-white rounded-t-lg dark:bg-gray-800">
                 <label htmlFor="comment" className="sr-only">
