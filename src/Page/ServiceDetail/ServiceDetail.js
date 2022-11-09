@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, Navigate, useLoaderData, useLocation } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import ReactHelmet from "../Shared/ReactHelmet/ReactHelmet";
 import ReviewCard from "./ReviewCard";
@@ -8,6 +8,7 @@ import toast, { Toaster } from "react-hot-toast";
 const ServiceDetail = () => {
   const { _id, about, name, picture, price, rating } = useLoaderData();
   const { user, reviewsInfo, setReviewsInfo } = useContext(AuthContext);
+  const location = useLocation();
 
   //  if the user not logged in, this toast will tell the user to login
   const notifyLogin = (event) => {
@@ -28,16 +29,22 @@ const ServiceDetail = () => {
           </div>
         </div>
         <div className="flex border-l border-gray-200">
-          <Link
-            to="/login"
-            className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          >
-            Login
-          </Link>
+          <button onClick={() => toast.dismiss(t.id)}>
+            <Link
+              to="/login"
+              state={{ from: location }}
+              className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              Login
+            </Link>
+          </button>
         </div>
       </div>
     ));
   };
+
+  //this toast notifies after adding review is successful
+  const notifyAddReview = () => toast.success("Successfully Review Added!");
 
   useEffect(() => {
     handleGetReviews();
@@ -70,6 +77,9 @@ const ServiceDetail = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        if (data.insertedId) {
+          notifyAddReview();
+        }
         console.log(data);
         handleGetReviews();
         form.reset();
@@ -103,11 +113,11 @@ const ServiceDetail = () => {
           <form onSubmit={user?.uid ? handleAddReview : notifyLogin}>
             <div className="mb-4 w-full bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
               <div className="py-2 px-4 bg-white rounded-t-lg dark:bg-gray-800">
-                <label htmlFor="comment" className="sr-only">
-                  Your comment
+                <label htmlFor="review" className="sr-only">
+                  Your review
                 </label>
                 <textarea
-                  id="comment"
+                  id="review"
                   name="review"
                   rows="4"
                   className="px-0 w-full text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
@@ -117,7 +127,7 @@ const ServiceDetail = () => {
               </div>
               <div className="flex justify-between items-center py-2 px-3 border-t dark:border-gray-600">
                 <button
-                  type="type"
+                  type="submit"
                   className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
                 >
                   Add Review

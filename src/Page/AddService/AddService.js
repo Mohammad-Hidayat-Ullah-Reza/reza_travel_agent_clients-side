@@ -3,10 +3,10 @@ import toast, { Toaster } from "react-hot-toast";
 import { Link, useLoaderData } from "react-router-dom";
 
 const AddService = () => {
-  //this toast notifies after update review is successfull
+  //this toast notifies after adding service is successfull
   const notifyAddService = () => toast.success("Successfully Service Added!");
 
-  // this handler handles update review
+  // this handler handles adding service
   const handleAddService = (event) => {
     event.preventDefault();
     const form = event.target;
