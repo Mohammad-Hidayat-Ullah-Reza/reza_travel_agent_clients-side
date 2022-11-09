@@ -1,11 +1,15 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import ReviewCard from "./ReviewCard";
 
 const ServiceDetail = () => {
   const { _id, about, name, picture, price, rating } = useLoaderData();
-  const { user, reviewInfo, setReviewInfo } = useContext(AuthContext);
+  const { user, reviewsInfo, setReviewsInfo } = useContext(AuthContext);
+
+  useEffect(() => {
+    handleGetReviews();
+  }, []);
 
   const handleAddReview = (event) => {
     event.preventDefault();
@@ -16,9 +20,15 @@ const ServiceDetail = () => {
     const review = form.review.value;
     const displayName = user.displayName;
     const email = user.email;
+    const serviceId = _id;
+    const serviceName = name;
+    const photoURL = user.photoURL;
     const doc = {
+      serviceId,
+      serviceName,
       displayName,
       email,
+      photoURL,
       review,
     };
 
@@ -32,7 +42,18 @@ const ServiceDetail = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        handleGetReviews();
         form.reset();
+      })
+      .catch((e) => console.log(e));
+  };
+
+  const handleGetReviews = () => {
+    fetch(`http://localhost:5000/reviews/${_id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setReviewsInfo(data);
       })
       .catch((e) => console.log(e));
   };
@@ -51,7 +72,7 @@ const ServiceDetail = () => {
           <form onSubmit={handleAddReview}>
             <div className="mb-4 w-full bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600">
               <div className="py-2 px-4 bg-white rounded-t-lg dark:bg-gray-800">
-                <label for="comment" className="sr-only">
+                <label htmlFor="comment" className="sr-only">
                   Your comment
                 </label>
                 <textarea
@@ -76,7 +97,9 @@ const ServiceDetail = () => {
         </div>
         {/* --------add review form end-------- */}
         <p>User Reviews:</p>
-        <ReviewCard></ReviewCard>
+        {reviewsInfo.map((reviewInfo) => (
+          <ReviewCard key={reviewInfo._id} reviewInfo={reviewInfo}></ReviewCard>
+        ))}
       </section>
     </div>
   );
