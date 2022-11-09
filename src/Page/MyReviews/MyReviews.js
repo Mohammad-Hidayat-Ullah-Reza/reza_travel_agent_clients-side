@@ -56,7 +56,7 @@ const MyReviews = () => {
   };
 
   const handleDeleteReview = (id) => {
-    fetch(`http://localhost:5000/reviews/${id}`, {
+    fetch(`http://localhost:5000/deleteReviews/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -114,9 +114,9 @@ const MyReviews = () => {
                 notifyDeleteConfirmation={notifyDeleteConfirmation}
               ></TableRow>
             ))}
-            <Toaster />
           </tbody>
         </table>
+        <Toaster />
       </div>
     </div>
   );
