@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import ReactHelmet from "../Shared/ReactHelmet/ReactHelmet";
 import ReviewCard from "./ReviewCard";
 
 const ServiceDetail = () => {
@@ -60,6 +61,8 @@ const ServiceDetail = () => {
 
   return (
     <div className="m-5 p-5">
+      <ReactHelmet value={"Services Details"}></ReactHelmet>
+
       <section>
         <h2>{name}</h2>
         <p>{_id}</p>

@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import GoogleSignIn from "../Shared/GoogleSignIn/GoogleSignIn";
+import ReactHelmet from "../Shared/ReactHelmet/ReactHelmet";
 
 const Login = () => {
   const { passwordSignIn } = useContext(AuthContext);
@@ -29,6 +30,8 @@ const Login = () => {
       onSubmit={handleSignIn}
       className="w-1/4 text-left mx-auto mt-5 shadow-2xl p-5 border-1  rounded-xl"
     >
+      <ReactHelmet value={"Login"}></ReactHelmet>
+
       <h2 className="text-3xl font-bold dark:text-white mb-6 text-center">
         Login Now !!!
       </h2>

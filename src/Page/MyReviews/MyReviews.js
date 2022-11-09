@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import ReactHelmet from "../Shared/ReactHelmet/ReactHelmet";
 import TableRow from "./TableRow";
 
 const MyReviews = () => {
@@ -35,6 +36,8 @@ const MyReviews = () => {
 
   return (
     <div className="text-center m-7">
+      <ReactHelmet value={"My Reviews"}></ReactHelmet>
+
       <h1 className="text-4xl font-bold">List of my Reviews</h1>
       <p className="text-xl font-semibold">{user?.displayName}</p>
       <p className="text-xl font-semibold">{user?.email}</p>
