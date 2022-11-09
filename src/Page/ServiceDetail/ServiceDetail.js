@@ -45,9 +45,6 @@ const ServiceDetail = () => {
 
   const handleAddReview = (event) => {
     event.preventDefault();
-    // if (!user) {
-    //   return notify();
-    // }
     const form = event.target;
     const review = form.review.value;
     const displayName = user.displayName;
