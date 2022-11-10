@@ -5,15 +5,24 @@ import ReactHelmet from "../Shared/ReactHelmet/ReactHelmet";
 import TableRow from "./TableRow";
 
 const MyReviews = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const [myReviews, setMyReviews] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?email=${user?.email}`)
-      .then((res) => res.json())
+    fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          logOut();
+        }
+        return res.json();
+      })
       .then((data) => setMyReviews(data))
       .catch((e) => console.log(e));
-  }, [user?.email]);
+  }, [user?.email, logOut]);
 
   //this toast asks for confirmation to delete the review
   const notifyDeleteConfirmation = (id) => {
@@ -56,9 +65,12 @@ const MyReviews = () => {
   };
 
   const handleDeleteReview = (id) => {
-    fetch(`http://localhost:5000/deleteReviews/${id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://b6a11-service-review-server-side-omega.vercel.app/deleteReviews/${id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

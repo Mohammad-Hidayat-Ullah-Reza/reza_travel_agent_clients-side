@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { setAuthToken } from "../../api/auth";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import GoogleSignIn from "../Shared/GoogleSignIn/GoogleSignIn";
 import ReactHelmet from "../Shared/ReactHelmet/ReactHelmet";
@@ -17,7 +18,7 @@ const SignUp = () => {
     passwordSignUp(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        setAuthToken(user);
         form.reset();
         handleUpdateInfo(displayName, photoURL);
       })

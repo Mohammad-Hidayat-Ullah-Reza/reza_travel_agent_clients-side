@@ -22,13 +22,16 @@ const AddService = () => {
       rating,
       about: description,
     };
-    fetch(`http://localhost:5000/addService`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updatedReview),
-    })
+    fetch(
+      `https://b6a11-service-review-server-side-omega.vercel.app/addService`,
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updatedReview),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.insertedId) {

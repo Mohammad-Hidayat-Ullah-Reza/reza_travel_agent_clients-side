@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { setAuthToken } from "../../api/auth";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import GoogleSignIn from "../Shared/GoogleSignIn/GoogleSignIn";
 import ReactHelmet from "../Shared/ReactHelmet/ReactHelmet";
@@ -19,9 +20,8 @@ const Login = () => {
     passwordSignIn(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        setAuthToken(user, navigate, from);
         form.reset();
-        navigate(from, { replace: true });
       })
       .catch((e) => console.log(e));
   };

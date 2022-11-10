@@ -1,15 +1,21 @@
 import React, { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
+import { useLocation, useNavigate } from "react-router-dom";
+import { setAuthToken } from "../../../api/auth";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const GoogleSignIn = ({ firstLetter }) => {
   const { signInGoogle } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   const handleGoogleSignIn = () => {
     signInGoogle()
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        setAuthToken(user, navigate, from);
       })
       .catch((e) => console.log(e));
   };
