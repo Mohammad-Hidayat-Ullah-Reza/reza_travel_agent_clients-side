@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../layout/Main";
 import AddService from "../../Page/AddService/AddService";
+import Blog from "../../Page/Blog/Blog";
 import Home from "../../Page/Home/Home";
 import Login from "../../Page/Login/Login";
 import MyReviews from "../../Page/MyReviews/MyReviews";
@@ -60,6 +61,11 @@ export const router = createBrowserRouter([
             <AddService></AddService>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/blog",
+        element: <Blog></Blog>,
+        loader: () => fetch("http://localhost:5000/blog"),
       },
     ],
   },
