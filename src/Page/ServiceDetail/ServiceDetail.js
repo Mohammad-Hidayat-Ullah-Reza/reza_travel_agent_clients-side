@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import { Link, Navigate, useLoaderData, useLocation } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { Link, useLoaderData, useLocation } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import ReactHelmet from "../Shared/ReactHelmet/ReactHelmet";
 import ReviewCard from "./ReviewCard";
@@ -50,8 +50,11 @@ const ServiceDetail = () => {
     handleGetReviews();
   }, []);
 
+  // const currentDateAndTime= {new Date().toLocaleString() + ""}
   const handleAddReview = (event) => {
     event.preventDefault();
+    // const currentFullDate = new Date();
+    // const d = {`${currentFullDate}.toLocaleString+{""}`}
     const form = event.target;
     const review = form.review.value;
     const displayName = user.displayName;
@@ -60,6 +63,7 @@ const ServiceDetail = () => {
     const serviceName = name;
     const photoURL = user.photoURL;
     const doc = {
+      dateAndTime: `${new Date().toLocaleString() + ""}`,
       serviceId,
       serviceName,
       displayName,
@@ -98,7 +102,6 @@ const ServiceDetail = () => {
   return (
     <div className="">
       <ReactHelmet value={name}></ReactHelmet>
-
       <section>
         <div className="md:h-screen overflow-hidden relative">
           <img src={picture} alt={name} className="" />
@@ -154,6 +157,9 @@ const ServiceDetail = () => {
           </form>
         </div>
         {/* --------add review form end-------- */}
+
+        {/* --------all reviews-------- */}
+
         <p className="text-2xl  text-orange-500 mt-14 mb-7 font-bold uppercase">
           All Reviews:
         </p>

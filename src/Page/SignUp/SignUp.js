@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { setAuthToken } from "../../api/auth";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import GoogleSignIn from "../Shared/GoogleSignIn/GoogleSignIn";
@@ -7,6 +7,10 @@ import ReactHelmet from "../Shared/ReactHelmet/ReactHelmet";
 
 const SignUp = () => {
   const { passwordSignUp, updateUserInfo } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   const handleSignUp = (event) => {
     event.preventDefault();
@@ -18,7 +22,7 @@ const SignUp = () => {
     passwordSignUp(email, password)
       .then((result) => {
         const user = result.user;
-        setAuthToken(user);
+        setAuthToken(user, navigate, from);
         form.reset();
         handleUpdateInfo(displayName, photoURL);
       })
@@ -26,7 +30,7 @@ const SignUp = () => {
   };
 
   const handleUpdateInfo = (displayName, photoURL) => {
-    const profile = { displayName, photoURL };
+    const profile = { displayName: displayName, photoURL: photoURL };
     updateUserInfo(profile)
       .then(() => {})
       .catch((e) => console.log(e));
@@ -44,7 +48,7 @@ const SignUp = () => {
       </h2>
       <div className="mb-6">
         <label
-          for="name"
+          htmlFor="name"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
         >
           Name
@@ -60,7 +64,7 @@ const SignUp = () => {
       </div>
       <div className="mb-6">
         <label
-          for="photoURL"
+          htmlFor="photoURL"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
         >
           Photo URL
@@ -76,7 +80,7 @@ const SignUp = () => {
       </div>
       <div className="mb-6">
         <label
-          for="email"
+          htmlFor="email"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
         >
           Email address
@@ -92,7 +96,7 @@ const SignUp = () => {
       </div>
       <div className="mb-6">
         <label
-          for="password"
+          htmlFor="password"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
         >
           Password

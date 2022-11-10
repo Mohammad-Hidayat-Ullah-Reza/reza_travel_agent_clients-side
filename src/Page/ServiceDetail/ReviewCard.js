@@ -1,7 +1,8 @@
 import React from "react";
 
 const ReviewCard = ({ reviewInfo }) => {
-  const { displayName, email, review, serviceId, _id, photoURL } = reviewInfo;
+  const { displayName, review, photoURL, dateAndTime } = reviewInfo;
+  console.log(reviewInfo);
 
   return (
     <article>
@@ -22,7 +23,7 @@ const ReviewCard = ({ reviewInfo }) => {
 
       <footer className="mb-5 text-sm text-gray-500 dark:text-gray-400">
         <p>
-          Reviewed on <time dateTime="2017-03-03 19:00">March 3, 2017</time>
+          Reviewed on <time dateTime={dateAndTime}>{dateAndTime}</time>
         </p>
       </footer>
 
