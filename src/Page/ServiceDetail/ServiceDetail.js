@@ -77,9 +77,7 @@ const ServiceDetail = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.insertedId) {
-          notifyAddReview();
-        }
+        notifyAddReview();
         console.log(data);
         handleGetReviews();
         form.reset();
@@ -98,16 +96,34 @@ const ServiceDetail = () => {
   };
 
   return (
-    <div className="m-5 p-5">
-      <ReactHelmet value={"Services Details"}></ReactHelmet>
+    <div className="">
+      <ReactHelmet value={name}></ReactHelmet>
 
       <section>
-        <h2>{name}</h2>
-        <p>{_id}</p>
-        <p>{price}</p>
-        <p>{about}</p>
+        <div className="md:h-screen overflow-hidden relative">
+          <img src={picture} alt={name} className="" />
+          <div className="w-full absolute top-6 md:top-1/3 flex justify-center">
+            <div className="w-4/5 lg:w-1/2 border-4 border-white">
+              <h2 className=" text-2xl lg:text-4xl text-center text-white font-bold uppercase border-4 p-7 border-white">
+                {name}
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div className="p-7">
+          <p className="text-2xl font-semibold mb-2 text-orange-500">
+            Pricing: {price} Tk.
+          </p>
+          <p className="text-2xl font-semibold mb-2 text-blue-700">
+            Rating:{" "}
+            <span className="py-.5 px-2 bg-blue-700 rounded text-white">
+              {rating}
+            </span>{" "}
+          </p>
+          <p className="text-xl text-justify">{about}</p>
+        </div>
       </section>
-      <section>
+      <section className="p-7">
         {/* --------add review form start-------- */}
         <div>
           <form onSubmit={user?.uid ? handleAddReview : notifyLogin}>
@@ -138,7 +154,9 @@ const ServiceDetail = () => {
           </form>
         </div>
         {/* --------add review form end-------- */}
-        <p>User Reviews:</p>
+        <p className="text-2xl  text-orange-500 mt-14 mb-7 font-bold uppercase">
+          All Reviews:
+        </p>
         {reviewsInfo.map((reviewInfo) => (
           <ReviewCard key={reviewInfo._id} reviewInfo={reviewInfo}></ReviewCard>
         ))}
