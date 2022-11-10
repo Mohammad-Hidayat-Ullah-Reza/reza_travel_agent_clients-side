@@ -3,13 +3,14 @@ import { Link, useLoaderData } from "react-router-dom";
 
 import ReactHelmet from "../Shared/ReactHelmet/ReactHelmet";
 import ServiceCard from "../Shared/ServiceCard/ServiceCard";
+import Slider from "./Slider";
 
 const Home = () => {
   const lastThreeServicesInfo = useLoaderData();
   return (
     <div>
       <ReactHelmet value={"Home"}></ReactHelmet>
-      <h1 className="text-4xl font-bold text-center mt-9">This is Home</h1>
+      <Slider></Slider>
       {/* --------last three service card-------- */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 p-5">
         {lastThreeServicesInfo.map((serviceInfo) => (

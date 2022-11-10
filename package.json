@@ -10,6 +10,7 @@
     "flowbite": "^1.5.3",
     "flowbite-react": "^0.3.4",
     "react": "^18.2.0",
+    "react-awesome-slider": "^4.1.0",
     "react-dom": "^18.2.0",
     "react-helmet-async": "^1.3.0",
     "react-hot-toast": "^2.4.0",
