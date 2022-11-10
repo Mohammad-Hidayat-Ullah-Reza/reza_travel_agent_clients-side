@@ -1,11 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const TableRow = ({
-  myReview,
-  handleDeleteReview,
-  notifyDeleteConfirmation,
-}) => {
+const TableRow = ({ myReview, notifyDeleteConfirmation }) => {
   const { review, serviceName, _id } = myReview;
   return (
     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -15,9 +11,14 @@ const TableRow = ({
       >
         {review.length > 50 ? review.slice(0, 50) + "..." : review}
       </th>
-      <td className="py-4 px-6">{serviceName}</td>
+      <td className="py-4 px-6">
+        {serviceName.length > 20
+          ? serviceName.slice(0, 15) + "..."
+          : serviceName}
+      </td>
       <td className="py-4 px-6">5 star</td>
       <td className="py-4 px-6">july</td>
+      <td className="py-4 px-6">5 pm</td>
 
       <td className="flex items-center py-4 px-6 space-x-3">
         <Link

@@ -82,51 +82,65 @@ const MyReviews = () => {
   return (
     <div className="text-center m-7">
       <ReactHelmet value={"My Reviews"}></ReactHelmet>
+      {myReviews.length > 0 ? (
+        <>
+          <h2 className="text-4xl font-bold uppercase">
+            all reviews of{" "}
+            <span className="text-blue-700">{user?.displayName}</span>
+          </h2>
 
-      <h1 className="text-4xl font-bold">List of my Reviews</h1>
-      <p className="text-xl font-semibold">{user?.displayName}</p>
-      <p className="text-xl font-semibold">{user?.email}</p>
+          {/* ---------table start--------- */}
 
-      {/* ---------table start--------- */}
+          <div className="overflow-x-auto m-5 relative shadow-md sm:rounded-lg">
+            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+              {/* ---------table head--------- */}
 
-      <div className="overflow-x-auto m-5 relative shadow-md sm:rounded-lg">
-        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-          {/* ---------table head--------- */}
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                  <th scope="col" className="py-3 px-6">
+                    Review
+                  </th>
+                  <th scope="col" className="py-3 px-6">
+                    Service
+                  </th>
+                  <th scope="col" className="py-3 px-6">
+                    Rating
+                  </th>
+                  <th scope="col" className="py-3 px-6">
+                    Date
+                  </th>
+                  <th scope="col" className="py-3 px-6">
+                    Time
+                  </th>
+                  <th scope="col" className="py-3 px-6">
+                    Action
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {/* --------table rows-------- */}
 
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              <th scope="col" className="py-3 px-6">
-                Review
-              </th>
-              <th scope="col" className="py-3 px-6">
-                Service
-              </th>
-              <th scope="col" className="py-3 px-6">
-                Rating
-              </th>
-              <th scope="col" className="py-3 px-6">
-                Time
-              </th>
-              <th scope="col" className="py-3 px-6">
-                Action
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* --------table rows-------- */}
-
-            {myReviews.map((myReview) => (
-              <TableRow
-                key={myReview._id}
-                myReview={myReview}
-                handleDeleteReview={handleDeleteReview}
-                notifyDeleteConfirmation={notifyDeleteConfirmation}
-              ></TableRow>
-            ))}
-          </tbody>
-        </table>
-        <Toaster />
-      </div>
+                {myReviews.map((myReview) => (
+                  <TableRow
+                    key={myReview._id}
+                    myReview={myReview}
+                    handleDeleteReview={handleDeleteReview}
+                    notifyDeleteConfirmation={notifyDeleteConfirmation}
+                  ></TableRow>
+                ))}
+              </tbody>
+            </table>
+            <Toaster />
+          </div>
+        </>
+      ) : (
+        <div className="h-screen flex items-center justify-center">
+          <h2 className="text-4xl font-bold uppercase">
+            <span className="text-blue-700">{user?.displayName}</span> didn't
+            add any reviews yet
+          </h2>
+        </div>
+      )}
     </div>
   );
 };
