@@ -66,6 +66,7 @@ const AuthProvider = ({ children }) => {
     reviewsInfo,
     setReviewsInfo,
     loading,
+    setLoading,
   };
 
   return (

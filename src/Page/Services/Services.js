@@ -1,10 +1,11 @@
-import React from "react";
 import { useLoaderData } from "react-router-dom";
+
 import ReactHelmet from "../Shared/ReactHelmet/ReactHelmet";
 import ServiceCard from "../Shared/ServiceCard/ServiceCard";
 
 const Services = () => {
   const servicesInfo = useLoaderData();
+
   return (
     <div className="my-7">
       <ReactHelmet value={"Services"}></ReactHelmet>

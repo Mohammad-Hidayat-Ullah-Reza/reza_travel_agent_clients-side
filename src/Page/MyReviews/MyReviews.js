@@ -9,11 +9,14 @@ const MyReviews = () => {
   const [myReviews, setMyReviews] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?email=${user?.email}`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    })
+    fetch(
+      `https://b6a11-service-review-server-side-omega.vercel.app/reviews?email=${user?.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    )
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
           logOut();
@@ -65,9 +68,12 @@ const MyReviews = () => {
   };
 
   const handleDeleteReview = (id) => {
-    fetch(`http://localhost:5000/deleteReviews/${id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://b6a11-service-review-server-side-omega.vercel.app/deleteReviews/${id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -103,15 +109,11 @@ const MyReviews = () => {
                   <th scope="col" className="py-3 px-6">
                     Service
                   </th>
+
                   <th scope="col" className="py-3 px-6">
-                    Rating
+                    Date and Time of Review
                   </th>
-                  <th scope="col" className="py-3 px-6">
-                    Date
-                  </th>
-                  <th scope="col" className="py-3 px-6">
-                    Time
-                  </th>
+
                   <th scope="col" className="py-3 px-6">
                     Action
                   </th>

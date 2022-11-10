@@ -28,7 +28,7 @@ const Login = () => {
   return (
     <form
       onSubmit={handleSignIn}
-      className="w-1/4 text-left mx-auto mt-5 shadow-2xl p-5 border-1  rounded-xl"
+      className="md:w-1/2 lg:w-1/4 text-left mx-3 md:mx-auto mt-5 shadow-2xl p-5 border-1  rounded-xl"
     >
       <ReactHelmet value={"Login"}></ReactHelmet>
 

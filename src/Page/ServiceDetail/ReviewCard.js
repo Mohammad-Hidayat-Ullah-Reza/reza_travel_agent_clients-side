@@ -5,15 +5,11 @@ const ReviewCard = ({ reviewInfo }) => {
   console.log(reviewInfo);
 
   return (
-    <article>
+    <article className="my-7">
       <div className="flex items-center mb-4 space-x-4">
         {/* --------reviewer photo and name-------- */}
 
-        <img
-          className={photoURL}
-          src="/docs/images/people/profile-picture-5.jpg"
-          alt=""
-        />
+        <img className="w-6 h-6" src={photoURL} alt="" />
         <div className="space-y-1 font-medium dark:text-white">
           <p>{displayName}</p>
         </div>
@@ -21,7 +17,7 @@ const ReviewCard = ({ reviewInfo }) => {
 
       {/* --------review time and date-------- */}
 
-      <footer className="mb-5 text-sm text-gray-500 dark:text-gray-400">
+      <footer className="mb-2 text-sm text-gray-500 dark:text-gray-400">
         <p>
           Reviewed on <time dateTime={dateAndTime}>{dateAndTime}</time>
         </p>

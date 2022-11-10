@@ -10,7 +10,7 @@ const Home = () => {
   const [flights, setFlights] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/flights")
+    fetch("https://b6a11-service-review-server-side-omega.vercel.app/flights")
       .then((res) => res.json())
       .then((data) => setFlights(data))
       .catch((e) => console.log(e));

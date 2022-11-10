@@ -1,12 +1,11 @@
-import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import ReactHelmet from "../Shared/ReactHelmet/ReactHelmet";
 
 const UpdateReview = () => {
-  const { _id, review, serviceName } = useLoaderData();
+  const { _id, review, serviceName, dateAndTime } = useLoaderData();
 
-  //this toast notifies after update review is successfull
+  //this toast notifies after update review is successful
   const notifyReview = () => toast.success("Successfully Review Updated!");
 
   // this handler handles update review
@@ -17,13 +16,16 @@ const UpdateReview = () => {
     const updatedReview = {
       review: textAreaReview,
     };
-    fetch(`http://localhost:5000/updateReview/${_id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updatedReview),
-    })
+    fetch(
+      `https://b6a11-service-review-server-side-omega.vercel.app/updateReview/${_id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updatedReview),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
@@ -72,33 +74,14 @@ const UpdateReview = () => {
               htmlFor="first_name"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
             >
-              Date
+              Date and Time of Review
             </label>
             <input
               type="text"
               id="first_name"
               aria-label="first name"
               className="mb-3 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              value="date"
-              disabled
-            />
-          </div>
-
-          {/* -------Time------- */}
-
-          <div>
-            <label
-              htmlFor="first_name"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-            >
-              Time
-            </label>
-            <input
-              type="text"
-              id="first_name"
-              aria-label="first name"
-              className="mb-3 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              value="time"
+              value={dateAndTime}
               disabled
             />
           </div>

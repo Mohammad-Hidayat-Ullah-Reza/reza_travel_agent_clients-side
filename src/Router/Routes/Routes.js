@@ -19,7 +19,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/three"),
+        loader: () =>
+          fetch(
+            "https://b6a11-service-review-server-side-omega.vercel.app/three"
+          ),
       },
       {
         path: "/login",
@@ -32,13 +35,18 @@ export const router = createBrowserRouter([
       {
         path: "/services",
         element: <Services></Services>,
-        loader: () => fetch("http://localhost:5000/services"),
+        loader: () =>
+          fetch(
+            "https://b6a11-service-review-server-side-omega.vercel.app/services"
+          ),
       },
       {
         path: "/services/:id",
         element: <ServiceDetail></ServiceDetail>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params.id}`),
+          fetch(
+            `https://b6a11-service-review-server-side-omega.vercel.app/services/${params.id}`
+          ),
       },
       {
         path: "/reviews",
@@ -52,7 +60,9 @@ export const router = createBrowserRouter([
         path: "/review/:id",
         element: <UpdateReview></UpdateReview>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/review/${params.id}`),
+          fetch(
+            `https://b6a11-service-review-server-side-omega.vercel.app/review/${params.id}`
+          ),
       },
       {
         path: "/addService",
@@ -65,7 +75,10 @@ export const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog></Blog>,
-        loader: () => fetch("http://localhost:5000/blog"),
+        loader: () =>
+          fetch(
+            "https://b6a11-service-review-server-side-omega.vercel.app/blog"
+          ),
       },
     ],
   },

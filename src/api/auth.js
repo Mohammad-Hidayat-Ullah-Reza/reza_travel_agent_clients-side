@@ -2,8 +2,8 @@ export const setAuthToken = (user, navigate, from) => {
   const currentUser = {
     email: user.email,
   };
-  console.log(currentUser);
-  fetch(`http://localhost:5000/jwt`, {
+
+  fetch(`https://b6a11-service-review-server-side-omega.vercel.app/jwt`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -12,7 +12,6 @@ export const setAuthToken = (user, navigate, from) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
       localStorage.setItem("token", data.token);
       navigate(from, { replace: true });
     });
