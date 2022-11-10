@@ -20,7 +20,7 @@ const Home = () => {
     <div>
       <ReactHelmet value={"Home"}></ReactHelmet>
       <Slider></Slider>
-      <h2 className="text-4xl text-blue-700 font-bold uppercase text-center">
+      <h2 className="text-4xl mt-20 text-blue-700 font-bold uppercase text-center">
         Trending tour packages
       </h2>
       {/* --------last three service card-------- */}

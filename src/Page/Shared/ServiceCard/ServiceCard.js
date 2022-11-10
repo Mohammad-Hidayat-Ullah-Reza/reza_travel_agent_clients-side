@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PhotoViewer from "../PhotoViewer/PhotoViewer";
 
 const ServiceCard = ({ serviceInfo }) => {
   const { _id, about, name, picture, price } = serviceInfo;
@@ -7,7 +8,8 @@ const ServiceCard = ({ serviceInfo }) => {
   return (
     <div className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
       <div className="h-1/2 overflow-hidden">
-        <img className="rounded-t-lg w-full h-full" src={picture} alt={name} />
+        {/* <img className="rounded-t-lg w-full h-full" src={picture} alt={name} /> */}
+        <PhotoViewer picture={picture} name={name}></PhotoViewer>
       </div>
       <div className="p-5 h-1/2 flex flex-col items-start justify-between">
         <Link to={`/services/${_id}`}>

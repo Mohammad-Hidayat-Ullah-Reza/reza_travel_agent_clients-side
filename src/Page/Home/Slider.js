@@ -27,12 +27,11 @@ const Slider = () => {
       <AwesomeSlider animation="cubeAnimation">
         {data.map((d) => (
           <div
-            className="text-white font-bold uppercase text-center"
+            className="text-white text-3xl md:text-5xl font-bold uppercase text-center"
             key={d.id}
             style={{
               backgroundImage: `url(${d.img})`,
               marginTop: "-70px",
-              fontSize: "50px",
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
             }}
