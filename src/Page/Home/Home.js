@@ -11,7 +11,7 @@ const Home = () => {
       <ReactHelmet value={"Home"}></ReactHelmet>
       <h1 className="text-4xl font-bold text-center mt-9">This is Home</h1>
       {/* --------last three service card-------- */}
-      <div className="grid grid-cols-3 gap-3 p-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 p-5">
         {lastThreeServicesInfo.map((serviceInfo) => (
           <ServiceCard
             key={serviceInfo._id}

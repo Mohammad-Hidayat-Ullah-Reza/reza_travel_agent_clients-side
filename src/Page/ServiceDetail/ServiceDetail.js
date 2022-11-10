@@ -68,7 +68,7 @@ const ServiceDetail = () => {
       review,
     };
 
-    fetch("https://b6a11-service-review-server-side-omega.vercel.app/review", {
+    fetch("http://localhost:5000/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -88,9 +88,7 @@ const ServiceDetail = () => {
   };
 
   const handleGetReviews = () => {
-    fetch(
-      `https://b6a11-service-review-server-side-omega.vercel.app/reviews/${_id}`
-    )
+    fetch(`http://localhost:5000/reviews/${_id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

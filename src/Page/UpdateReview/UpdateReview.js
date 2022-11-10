@@ -16,16 +16,13 @@ const UpdateReview = () => {
     const updatedReview = {
       review: textAreaReview,
     };
-    fetch(
-      `https://b6a11-service-review-server-side-omega.vercel.app/updateReview/${_id}`,
-      {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(updatedReview),
-      }
-    )
+    fetch(`http://localhost:5000/updateReview/${_id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updatedReview),
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {

@@ -65,12 +65,9 @@ const MyReviews = () => {
   };
 
   const handleDeleteReview = (id) => {
-    fetch(
-      `https://b6a11-service-review-server-side-omega.vercel.app/deleteReviews/${id}`,
-      {
-        method: "DELETE",
-      }
-    )
+    fetch(`http://localhost:5000/deleteReviews/${id}`, {
+      method: "DELETE",
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
