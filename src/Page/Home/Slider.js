@@ -31,7 +31,6 @@ const Slider = () => {
             key={d.id}
             style={{
               backgroundImage: `url(${d.img})`,
-              height: "100vh",
               marginTop: "-70px",
               fontSize: "50px",
               backgroundSize: "cover",
