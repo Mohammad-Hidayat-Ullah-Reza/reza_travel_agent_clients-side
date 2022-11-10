@@ -1,10 +1,13 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import ReactHelmet from "../Shared/ReactHelmet/ReactHelmet";
 
 const Blog = () => {
   const articles = useLoaderData();
   return (
     <div className="p-10 flex flex-col items-center justify-center">
+      <ReactHelmet value={"Blog"}></ReactHelmet>
+
       <h2 className="text-4xl text-blue-700 text-center font-bold uppercase my-10 md:my-16 border-b-2 pb-4 w-fit border-black ">
         Welcome to the Blog Page of{" "}
         <span className="text-red-700">Reza Travel Agent</span>

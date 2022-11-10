@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import ReactHelmet from "../Shared/ReactHelmet/ReactHelmet";
 
 const UpdateReview = () => {
   const { _id, review, serviceName } = useLoaderData();
@@ -35,6 +36,8 @@ const UpdateReview = () => {
 
   return (
     <div className="mt-5 mb-7 lg:p-10 flex justify-center items-center">
+      <ReactHelmet value={"Update Review"}></ReactHelmet>
+
       <form
         onSubmit={handleUpdateReview}
         className="md:w-3/4 lg:w-1/2 shadow-xl p-5 rounded-xl"

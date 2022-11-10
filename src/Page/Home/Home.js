@@ -19,7 +19,7 @@ const Home = () => {
   return (
     <div>
       <ReactHelmet value={"Home"}></ReactHelmet>
-      {/* <Slider></Slider> */}
+      <Slider></Slider>
       <h2 className="text-4xl text-blue-700 font-bold uppercase text-center">
         Trending tour packages
       </h2>
